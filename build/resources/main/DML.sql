@@ -23,24 +23,24 @@ VALUES ('JS', 'Middle');
 INSERT INTO skills (skill_name, skill_level)
 VALUES ('JS', 'Senior');
 
-INSERT INTO developers(name, sex, age)
-VALUES ('Ivan Ivanov', 'Male','33');
-INSERT INTO developers(name, sex, age)
-VALUES ('Petr Petrov', 'Male','29');
-INSERT INTO developers(name, sex, age)
-VALUES ('Olga Olina', 'Female','25');
-INSERT INTO developers(name, sex, age)
-VALUES ('Svetlana Svetina', 'Female','31');
-INSERT INTO developers(name, sex, age)
-VALUES ('Nikolay Nikolaev', 'Male','50');
-INSERT INTO developers(name, sex, age)
-VALUES ('Semen Semenov', 'Male','60');
-INSERT INTO developers(name, sex, age)
-VALUES ('Alexey Alexeev', 'Male','19');
-INSERT INTO developers(name, sex, age)
-VALUES ('Alex Alexandrov', 'Male','35');
-INSERT INTO developers(name, sex, age)
-VALUES ('Victor Victorov', 'Male','80');
+INSERT INTO developers(name,salary, sex, age)
+VALUES ('Ivan Ivanov','15000', 'Male','33');
+INSERT INTO developers(name,salary, sex, age)
+VALUES ('Petr Petrov', '25000','Male','29');
+INSERT INTO developers(name,salary, sex, age)
+VALUES ('Olga Olina', '7000','Female','25');
+INSERT INTO developers(name,salary, sex, age)
+VALUES ('Svetlana Svetina','16000', 'Female','31');
+INSERT INTO developers(name,salary, sex, age)
+VALUES ('Nikolay Nikolaev', '35000','Male','50');
+INSERT INTO developers(name, salary,sex, age)
+VALUES ('Semen Semenov','27000', 'Male','60');
+INSERT INTO developers(name, salary,sex, age)
+VALUES ('Alexey Alexeev', '18000','Male','19');
+INSERT INTO developers(name,salary, sex, age)
+VALUES ('Alex Alexandrov', '18000','Male','35');
+INSERT INTO developers(name, salary,sex, age)
+VALUES ('Victor Victorov','20000', 'Male','80');
 
 INSERT INTO customers(name,email)
 VALUES ('Vladimir Klichko', 'Klichko@gmail.com');

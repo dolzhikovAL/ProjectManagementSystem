@@ -1,4 +1,4 @@
-package com.project.managment.database;
+package com.project.management.database;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;

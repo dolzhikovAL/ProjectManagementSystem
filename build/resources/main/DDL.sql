@@ -1,4 +1,4 @@
-create database HomeWork_go_it with owner postgres;
+create database  project_manager with owner postgres;
 
 create schema if not exists public;
 
@@ -61,6 +61,7 @@ create table developers
 (
     developer_id SERIAL,
     name         VARCHAR(25) NOT NULL,
+    salary       INT,
     sex          VARCHAR(10),
     age          INT,
     PRIMARY KEY (developer_id),
@@ -101,6 +102,7 @@ create table developers_skills
     FOREIGN KEY (developer_id) REFERENCES developers(developer_id),
     FOREIGN KEY (skill_id) REFERENCES skills(skills_id)
 );
+ц
 alter table companies_projects
     owner to postgres;
 
@@ -115,3 +117,5 @@ create table developers_projects
 );
 alter table companies_projects
     owner to postgres;
+
+
