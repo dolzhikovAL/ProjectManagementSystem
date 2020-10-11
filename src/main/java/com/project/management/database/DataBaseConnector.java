@@ -10,6 +10,8 @@ import java.util.Properties;
 
 
 public class DataBaseConnector {
+
+
     private static final HikariDataSource ds;
 
 
@@ -32,6 +34,11 @@ public class DataBaseConnector {
         config.setPassword("jdbc.password");
         ds= new HikariDataSource(config);
         ds.setMaximumPoolSize(10);
+    }
+
+
+    public static HikariDataSource getConnector() {
+        return ds;
     }
 }
 
