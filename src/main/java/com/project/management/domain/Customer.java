@@ -6,8 +6,8 @@ public class Customer {
     private String name;
     private String email;
 
-
-    public String printOut(){
+    @Override
+    public String toString() {
         return "Customer name --" + name + " email -- " + email;
     }
 
@@ -27,8 +27,6 @@ public class Customer {
     public void setEmail(String email) {
         this.email = email;
     }
-
-
 
 
 }

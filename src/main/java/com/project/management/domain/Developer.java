@@ -6,8 +6,9 @@ public class Developer {
     private int age;
     private int salary;
 
-    public String printOut(){
-        return "Customer name --" + name + "  age -- " + age + "  sex --" + sex +"  salary-- " + salary;
+    @Override
+    public String toString() {
+        return "Customer name --" + name + "  age -- " + age + "  sex --" + sex + "  salary-- " + salary;
     }
 
     public String getName() {
@@ -41,10 +42,6 @@ public class Developer {
     public void setSalary(int salary) {
         this.salary = salary;
     }
-
-
-
-
 
 
 }

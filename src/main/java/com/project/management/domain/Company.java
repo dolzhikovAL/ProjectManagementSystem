@@ -21,8 +21,8 @@ public class Company {
     private String name;
     private String country;
 
-
-    public String printOut(){
+    @Override
+    public String toString() {
         return "Customer name --" + name + " country -- " + country;
     }
 

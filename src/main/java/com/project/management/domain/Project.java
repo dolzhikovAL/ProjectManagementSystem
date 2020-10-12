@@ -8,8 +8,9 @@ public class Project {
     private String name;
     private LocalDate deadLine;
 
-    public String printOut(){
-        return "Customer name --" + name + " deadLine -- " +deadLine;
+    @Override
+    public String toString() {
+        return "Customer name --" + name + " deadLine -- " + deadLine;
     }
 
 

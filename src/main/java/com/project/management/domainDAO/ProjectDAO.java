@@ -24,10 +24,10 @@ public class ProjectDAO  extends DataCRUD<Project> {
                 statement.execute();
                 System.out.println("Project" + project.toString() + "was created");
             } catch (SQLException e) {
-                System.out.println("Fail when create Project ");
+                System.out.println("Fail when create Project  " + e.getMessage());
             }
         }
-git
+
     @Override
     public void read(Project project) {
 

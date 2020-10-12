@@ -27,7 +27,7 @@ import java.sql.SQLException;
                 statement.execute();
                 System.out.println("Developer" + developer.toString() + "was created");
             } catch (SQLException e) {
-                System.out.println("Fail when create Developer ");
+                System.out.println("Fail when create Developer " + e.getMessage());
             }
         }
 

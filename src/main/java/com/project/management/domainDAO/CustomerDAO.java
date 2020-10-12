@@ -24,7 +24,7 @@ public class CustomerDAO extends DataCRUD<Customer> {
             statement.execute();
             System.out.println("Customer" + customer.toString() + "was created");
         } catch (SQLException e) {
-            System.out.println("Fail to create Customer ");
+            System.out.println("Fail to create Customer " + e.getMessage());
         }
     }
 
