@@ -1,6 +1,13 @@
 package com.project.management.domain;
 
 public class Developer {
+    public Developer(String name, String sex, int age, int salary) {
+        this.name = name;
+        this.sex = sex;
+        this.age = age;
+        this.salary = salary;
+    }
+
     private String name;
     private String sex;
     private int age;

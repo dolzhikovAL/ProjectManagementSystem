@@ -6,7 +6,7 @@ public class Console implements View {
     @Override
     public String read() {
         Scanner scanner = new Scanner(System.in);
-                return scanner.nextLine();
+        return scanner.nextLine();
     }
 
     @Override

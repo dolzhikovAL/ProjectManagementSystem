@@ -18,6 +18,7 @@ create table skills
 alter table skills
     owner to postgres;
 
+
 create table customers
 (
     customer_id SERIAL,
@@ -102,7 +103,7 @@ create table developers_skills
     FOREIGN KEY (developer_id) REFERENCES developers(developer_id),
     FOREIGN KEY (skill_id) REFERENCES skills(skills_id)
 );
-ц
+
 alter table companies_projects
     owner to postgres;
 

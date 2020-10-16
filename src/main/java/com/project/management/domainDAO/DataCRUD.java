@@ -1,9 +1,14 @@
 package com.project.management.domainDAO;
 
-public abstract class DataCRUD<T>{
-    public abstract void create(T t);
-    public abstract void read(T t);
-    public abstract void update(T t);
-    public abstract void delete(T t);
+import java.sql.SQLException;
+
+public abstract class DataCRUD<T> {
+    public abstract void create(T t) throws SQLException;
+
+    public abstract void read(T t) throws SQLException;
+
+    public abstract void update(T t) throws SQLException;
+
+    public abstract void delete(T t) throws SQLException;
 
 }

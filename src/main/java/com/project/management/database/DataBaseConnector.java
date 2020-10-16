@@ -30,9 +30,9 @@ public class DataBaseConnector {
         }
 
         config.setJdbcUrl(properties.getProperty("jdbc.url"));
-        config.setUsername("jdbc.username");
-        config.setPassword("jdbc.password");
-        ds= new HikariDataSource(config);
+        config.setUsername(properties.getProperty("jdbc.username"));
+        config.setPassword(properties.getProperty("jdbc.password"));
+        ds = new HikariDataSource(config);
         ds.setMaximumPoolSize(10);
     }
 

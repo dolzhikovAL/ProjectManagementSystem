@@ -102,7 +102,7 @@ create table developers_skills
     FOREIGN KEY (developer_id) REFERENCES developers(developer_id),
     FOREIGN KEY (skill_id) REFERENCES skills(skills_id)
 );
-ц
+
 alter table companies_projects
     owner to postgres;
 
