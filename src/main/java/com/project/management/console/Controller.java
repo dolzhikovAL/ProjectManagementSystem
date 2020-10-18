@@ -1,22 +1,28 @@
 package com.project.management.console;
 
 import com.project.management.services.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+import static com.project.management.services.InputValidator.tableCrudAsk;
 import static com.project.management.services.InputValidator.validateString;
 
 public class Controller {
 
     private View view;
+    private static final Logger LOGGER = LogManager.getLogger(Controller.class);
 
     public Controller(View view) {
         this.view = view;
+        LOGGER.trace("Start application");
     }
 
     public void readOption() {
         view.write("Hello world \n" +
                 "This is Project management system \n" +
                 "Please tape one of the next command \n" +
-                "For CRUD  function type (CRUD)");
+                "For CRUD  function type (CRUD) \n" +
+                "For exit type(exit)");
         choseOfMainFunction(view.read());
 
     }
@@ -24,13 +30,9 @@ public class Controller {
     public void choseOfMainFunction(String input) {
         switch (input) {
             case "CRUD": {
-                view.write("Please tape one of the next command \n" +
-                        "for create function type (create) \n" +
-                        "for update function type (update) \n" +
-                        "for delete function type (delete) \n" +
-                        "for read function type (read) \n" +
-                        "or exit for exit");
+                tableCrudAsk(view);
                 choseCrudOption(view.read());
+                break;
             }
             case "report": {
                 view.write("Please type what kind of report you need \n" +
@@ -77,7 +79,7 @@ public class Controller {
             default: {
                 view.write("Command was incorrect \n" +
                         "try one more time");
-
+                InputValidator.tableCrudAsk(view);
                 choseCrudOption(view.read());
                 break;
             }
@@ -110,9 +112,15 @@ public class Controller {
                 readOption();
                 break;
             }
+            case "exit": {
+                view.write("Goodbye!!!!!!!");
+                break;
+            }
             default: {
+                view.write("Wrong object-----");
                 InputValidator.tableChoseAsk(view);
                 optionCreateObjectMenu(validateString(view));
+
                 break;
             }
         }

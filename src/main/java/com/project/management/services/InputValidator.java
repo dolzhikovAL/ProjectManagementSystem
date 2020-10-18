@@ -50,6 +50,15 @@ public class InputValidator {
                 "or exit for exit");
     }
 
+    public static void tableCrudAsk(View view){
+        view.write("Please tape one of the next command \n" +
+                "for create function type (create) \n" +
+                "for update function type (update) \n" +
+                "for delete function type (delete) \n" +
+                "for read function type (read) \n" +
+                "or exit for exit");
+    }
+
 }
 
 

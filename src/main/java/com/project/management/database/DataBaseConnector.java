@@ -2,6 +2,8 @@ package com.project.management.database;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 
 import java.io.IOException;
@@ -13,6 +15,7 @@ public class DataBaseConnector {
 
 
     private static final HikariDataSource ds;
+    private static final Logger LOGGER = LogManager.getLogger(DataBaseConnector.class);
 
 
     static {
@@ -26,6 +29,7 @@ public class DataBaseConnector {
             }
 
         } catch (IOException e) {
+            LOGGER.error("Error loading application properties");
             throw new RuntimeException("Error load application properties");
         }
 

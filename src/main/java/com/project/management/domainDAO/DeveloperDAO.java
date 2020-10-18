@@ -4,6 +4,8 @@ import com.project.management.database.DataBaseConnector;
 
 import com.project.management.domain.Developer;
 import com.zaxxer.hikari.HikariDataSource;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,6 +15,7 @@ import java.sql.SQLException;
 public class DeveloperDAO extends DataCRUD<Developer> {
 
     private HikariDataSource connector = DataBaseConnector.getConnector();
+    private static final Logger LOGGER = LogManager.getLogger(DeveloperDAO.class);
 
     private final static String INSERT = "INSERT INTO developers  (name,salary, sex,age) " + "VALUES (?,?,?,?)";
 
@@ -20,13 +23,16 @@ public class DeveloperDAO extends DataCRUD<Developer> {
     public void create(Developer developer) {
         try (Connection connection = connector.getConnection();
              PreparedStatement statement = connection.prepareStatement(INSERT)) {
+            LOGGER.debug("Create developer : developer.name%s " + developer.getName());
+
             statement.setString(1, developer.getName());
             statement.setInt(2, developer.getSalary());
             statement.setString(3, developer.getSex());
             statement.setInt(4, developer.getAge());
             statement.execute();
-            System.out.println("Developer" + developer.toString() + "was created");
+            System.out.println("Developer" + developer.toString() + "  was created");
         } catch (SQLException e) {
+            LOGGER.error(String.valueOf(" FAIL to Create developer : developer.name%s " + developer.getName() ));
             System.out.println("Fail when create Developer " + e.getMessage());
         }
     }

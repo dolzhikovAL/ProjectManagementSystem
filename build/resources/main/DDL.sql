@@ -18,6 +18,7 @@ create table skills
 alter table skills
     owner to postgres;
 
+
 create table customers
 (
     customer_id SERIAL,
