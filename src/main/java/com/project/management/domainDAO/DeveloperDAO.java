@@ -3,6 +3,7 @@ package com.project.management.domainDAO;
 import com.project.management.database.DataBaseConnector;
 
 import com.project.management.domain.Developer;
+import com.project.management.services.InputValidator;
 import com.zaxxer.hikari.HikariDataSource;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,6 +17,7 @@ public class DeveloperDAO extends DataCRUD<Developer> {
 
     private HikariDataSource connector = DataBaseConnector.getConnector();
     private static final Logger LOGGER = LogManager.getLogger(DeveloperDAO.class);
+    private final static String READ = "SELECT  * FROM developers";
 
     private final static String INSERT = "INSERT INTO developers  (name,salary, sex,age) " + "VALUES (?,?,?,?)";
 
@@ -38,8 +40,8 @@ public class DeveloperDAO extends DataCRUD<Developer> {
     }
 
     @Override
-    public void read(Developer developer) {
-
+    public void read() {
+        InputValidator.writeOUT(READ);
     }
 
     @Override

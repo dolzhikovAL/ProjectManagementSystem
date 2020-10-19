@@ -2,19 +2,21 @@ package com.project.management.domainDAO;
 
 import com.project.management.database.DataBaseConnector;
 import com.project.management.domain.Customer;
+import com.project.management.services.InputValidator;
 import com.zaxxer.hikari.HikariDataSource;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class CustomerDAO extends DataCRUD<Customer> {
 
     private HikariDataSource connector = DataBaseConnector.getConnector();
     private static final Logger LOGGER = LogManager.getLogger(CustomerDAO.class);
-
+    private final static String READ = "SELECT  * FROM customers";
     private final static String INSERT = "INSERT INTO customers  (name,email)" + "VALUES (?,?)";
 
     @Override
@@ -27,14 +29,15 @@ public class CustomerDAO extends DataCRUD<Customer> {
             statement.execute();
             System.out.println("Customer" + customer.toString() + "  was created");
         } catch (SQLException e) {
-            LOGGER.error(String.valueOf(" FAIL to Create customer : customer.name%s " + customer.getName() ));
+            LOGGER.error(String.valueOf(" FAIL to Create customer : customer.name%s " + customer.getName()));
             System.out.println("Fail to create Customer " + e.getMessage());
         }
     }
 
 
     @Override
-    public void read(Customer customer) {
+    public void read() {
+        InputValidator.writeOUT(READ);
 
     }
 

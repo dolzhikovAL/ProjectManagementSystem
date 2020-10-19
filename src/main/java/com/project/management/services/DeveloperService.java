@@ -41,4 +41,11 @@ public class DeveloperService {
             view.write("Can't create  customer with name -- " + name + "  " + e.getMessage());
         }
     }
+    public void readDeveloper() throws SQLException {
+        view.write("Out Customers in format NAME \n" +
+                "Salary \n" +
+                "SEX \n" +
+                "age");
+       DeveloperDAO.read();
+    }
 }

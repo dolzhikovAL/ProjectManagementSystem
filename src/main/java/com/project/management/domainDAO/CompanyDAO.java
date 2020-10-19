@@ -2,6 +2,7 @@ package com.project.management.domainDAO;
 
 import com.project.management.database.DataBaseConnector;
 import com.project.management.domain.Company;
+import com.project.management.services.InputValidator;
 import com.zaxxer.hikari.HikariDataSource;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,6 +17,7 @@ public class CompanyDAO extends DataCRUD<Company> {
     private static final HikariDataSource connector = DataBaseConnector.getConnector();
     private static final Logger LOGGER = LogManager.getLogger(CompanyDAO.class);
     private final static String INSERT = "INSERT INTO companies(name,country)" + "VALUES (?,?)";
+    private final static String READ = "SELECT  * FROM companies";
 
     @Override
     public void create(Company company) {
@@ -34,8 +36,8 @@ public class CompanyDAO extends DataCRUD<Company> {
     }
 
     @Override
-    public void read(Company company) {
-
+    public void read() {
+        InputValidator.writeOUT(READ);
     }
 
     @Override

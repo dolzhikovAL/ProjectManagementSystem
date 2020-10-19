@@ -4,12 +4,13 @@ import com.project.management.services.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import static com.project.management.services.InputValidator.tableCrudAsk;
-import static com.project.management.services.InputValidator.validateString;
+import java.sql.SQLException;
+
+import static com.project.management.services.InputValidator.*;
 
 public class Controller {
 
-    private View view;
+    private final View view;
     private static final Logger LOGGER = LogManager.getLogger(Controller.class);
 
     public Controller(View view) {
@@ -17,7 +18,7 @@ public class Controller {
         LOGGER.trace("Start application");
     }
 
-    public void readOption() {
+    public void askMainOption() {
         view.write("Hello world \n" +
                 "This is Project management system \n" +
                 "Please tape one of the next command \n" +
@@ -29,6 +30,7 @@ public class Controller {
 
     public void choseOfMainFunction(String input) {
         switch (input) {
+
             case "CRUD": {
                 tableCrudAsk(view);
                 choseCrudOption(view.read());
@@ -44,33 +46,35 @@ public class Controller {
                 break;
             }
             default: {
-                view.write("Command was incorrect \n" +
-                        "try one more time");
-                readOption();
-                break;
+                view.write("Command  was incorrect \n" +
+                        "try one more time to chose MAIN command");
+                askMainOption();
+
             }
         }
     }
 
     public void choseCrudOption(String input) {
+
+
         switch (input) {
             case "create": {
-                InputValidator.tableChoseAsk(view);
                 optionCreateObjectMenu(validateString(view));
                 break;
             }
             case "update": {
-                InputValidator.tableChoseAsk(view);
-
+                break;
 
             }
             case "read": {
-                InputValidator.tableChoseAsk(view);
-
+                tableChoseAsk(view);
+                optionReadObjectMenu(validateString(view));
+                break;
 
             }
             case "delete": {
-                InputValidator.tableChoseAsk(view);
+                System.out.println("2");
+                break;
             }
             case "exit": {
                 view.write("Goodbye!!!!!!!");
@@ -78,7 +82,7 @@ public class Controller {
             }
             default: {
                 view.write("Command was incorrect \n" +
-                        "try one more time");
+                        "try one more time to chose CRUD command");
                 InputValidator.tableCrudAsk(view);
                 choseCrudOption(view.read());
                 break;
@@ -91,25 +95,25 @@ public class Controller {
             case "company": {
                 CompanyService companyService = new CompanyService(view);
                 companyService.inputCompany();
-                readOption();
+                askMainOption();
                 break;
             }
             case "customer": {
                 CustomerService customerService = new CustomerService(view);
                 customerService.inputCustomer();
-                readOption();
+                askMainOption();
                 break;
             }
             case "developer": {
                 DeveloperService developerService = new DeveloperService(view);
                 developerService.inputDeveloper();
-                readOption();
+                askMainOption();
                 break;
             }
             case "project": {
                 ProjectService projectService = new ProjectService(view);
                 projectService.inputProject();
-                readOption();
+                askMainOption();
                 break;
             }
             case "exit": {
@@ -122,6 +126,67 @@ public class Controller {
                 optionCreateObjectMenu(validateString(view));
 
                 break;
+            }
+        }
+    }
+
+    public void optionReadObjectMenu(String input) {
+        switch (input) {
+            case "customer": {
+                CustomerService customerService = new CustomerService(view);
+                try {
+                    customerService.readCustomer();
+                } catch (SQLException e) {
+                    System.out.println("not good with read customer");
+                    e.printStackTrace();
+                }
+                askMainOption();
+
+                break;
+            }
+            case "company": {
+                CompanyService companyService = new CompanyService(view);
+                try {
+                    companyService.readCompany();
+                } catch (SQLException e) {
+                    System.out.println("not good with read company ");
+                    e.printStackTrace();
+                }
+                askMainOption();
+
+                break;
+
+            }
+            case "project": {
+                ProjectService projectService = new ProjectService(view);
+                try {
+                    projectService.readProject();
+                } catch (SQLException e) {
+                    System.out.println("not good with read project ");
+                    e.printStackTrace();
+                }
+                askMainOption();
+
+                break;
+            }
+            case "developer": {
+                DeveloperService developerService = new DeveloperService(view);
+                try {
+                    developerService.readDeveloper();
+                } catch (SQLException e) {
+                    System.out.println("not good with read company ");
+                    e.printStackTrace();
+                }
+                askMainOption();
+
+                break;
+            }
+            default: {
+                view.write("Command was incorrect \n" +
+                        "try one more time");
+                tableChoseAsk(view);
+                optionReadObjectMenu(validateString(view));
+
             }
         }
     }

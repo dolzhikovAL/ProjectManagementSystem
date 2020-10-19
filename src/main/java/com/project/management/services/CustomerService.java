@@ -25,13 +25,20 @@ public class CustomerService {
         view.write("Enter Customer name");
         String name = validateString(view);
         view.write("Enter  Customer email");
-        String email =validateString(view);
+        String email = validateString(view);
         Customer customer = new Customer(name, email);
         try {
             CustomerDAO.create(customer);
         } catch (SQLException e) {
             view.write("Can't create  customer with name -- " + name + "  " + e.getMessage());
         }
+    }
+
+
+    public void readCustomer() throws SQLException {
+        view.write("Out Customers in format NAME \n" +
+                "email");
+        CustomerDAO.read();
     }
 }
 

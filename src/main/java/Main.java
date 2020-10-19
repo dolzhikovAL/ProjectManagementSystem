@@ -7,6 +7,6 @@ public class Main {
         System.out.println("Hello");
         View view= new Console();
         Controller controller = new Controller(view);
-        controller.readOption();
+        controller.askMainOption();
     }
 }

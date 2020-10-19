@@ -31,4 +31,12 @@ public class CompanyService {
             view.write("Can't create  company with name -- " + name + "  " + e.getMessage());
         }
     }
+
+    public void readCompany() throws SQLException {
+        view.write("Out Companies in format NAME \n" +
+                "Country");
+        CompanyDAO.read();
+    }
+
+
 }

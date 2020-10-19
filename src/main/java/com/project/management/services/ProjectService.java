@@ -31,6 +31,11 @@ public class ProjectService {
             view.write("Can't create  project with name -- " + name + "  " + e.getMessage());
         }
     }
+    public void readProject() throws SQLException {
+        view.write("Out Customers in format NAME \n" +
+                "project deadline");
+        ProjectDAO.read();
+    }
 
 
 }
