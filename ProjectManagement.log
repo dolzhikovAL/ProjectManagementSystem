@@ -1,2 +1,9 @@
 
 
+
+2020-10-25 18:18:01,084 DEBUG DeveloperDAO: Start writeOut report with task =SELECT name FROM developers d JOIN developers_projects dp ON d.developer_id= dp.developer_id WHERE dp.project_id IN (SELECT project_id  FROM projects WHERE  projects.name= ?); 
+2020-10-25 18:22:33,233 DEBUG DeveloperDAO: Start writeOut with task =SELECT  * FROM developers; 
+2020-10-25 19:07:35,222 DEBUG DeveloperDAO: Start writeOut with task =SELECT  * FROM companies; 
+2020-10-25 19:18:45,745 DEBUG DeveloperDAO: Start writeOut with task =SELECT  * FROM customers; 
+2020-10-25 19:56:13,069 DEBUG DeveloperDAO: Start writeOut with task =SELECT  * FROM customers; 
+2020-10-25 19:58:55,467 DEBUG DeveloperDAO: Start writeOut with task =SELECT * FROM projects; 

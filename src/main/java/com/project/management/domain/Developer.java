@@ -1,7 +1,7 @@
 package com.project.management.domain;
 
 public class Developer {
-    public Developer(String name, String sex, int age, int salary) {
+    public Developer(String name, int salary, String sex, int age) {
         this.name = name;
         this.sex = sex;
         this.age = age;
@@ -15,7 +15,7 @@ public class Developer {
 
     @Override
     public String toString() {
-        return "Customer name --" + name + "  age -- " + age + "  sex --" + sex + "  salary-- " + salary;
+        return "Customer name --" + name + "  salary-- " + salary + "  age -- " + age + "  sex --" + sex;
     }
 
     public String getName() {

@@ -23,61 +23,114 @@ public class Controller {
                 "This is Project management system \n" +
                 "Please tape one of the next command \n" +
                 "For CRUD  function type (CRUD) \n" +
+                "For reports function type (report) \n" +
                 "For exit type(exit)");
+        view.write("");
         choseOfMainFunction(view.read());
-
     }
 
     public void choseOfMainFunction(String input) {
         switch (input) {
-
             case "CRUD": {
                 tableCrudAsk(view);
-                choseCrudOption(view.read());
+                choseCrudOption(validateString(view));
+                askMainOption();
                 break;
             }
             case "report": {
-                view.write("Please type what kind of report you need \n" +
-                        "");
+                reportChoseAsk(view);
+                choseReportOption(validateString(view));
+                askMainOption();
                 break;
             }
             case "exit": {
-                view.write("Goodbye!!!!!!!");
+                view.write("Goodbye!");
+                System.exit(0);
                 break;
             }
             default: {
                 view.write("Command  was incorrect \n" +
                         "try one more time to chose MAIN command");
                 askMainOption();
-
             }
         }
     }
 
     public void choseCrudOption(String input) {
-
-
         switch (input) {
             case "create": {
+                InputValidator.tableChoseAsk(view);
                 optionCreateObjectMenu(validateString(view));
+                askMainOption();
                 break;
             }
             case "update": {
+                InputValidator.tableChoseAsk(view);
+                optionUpdateObjectMenu(validateString(view));
+                askMainOption();
                 break;
-
             }
             case "read": {
                 tableChoseAsk(view);
                 optionReadObjectMenu(validateString(view));
+                askMainOption();
                 break;
-
             }
             case "delete": {
-                System.out.println("2");
+                tableChoseAsk(view);
+                optionDeleteObjectMenu(validateString(view));
+                askMainOption();
                 break;
             }
             case "exit": {
-                view.write("Goodbye!!!!!!!");
+                view.write("Goodbye!!!");
+                break;
+            }
+            default: {
+                view.write("Command was incorrect \n" +
+                        "try one more time to chose CRUD command");
+                InputValidator.tableCrudAsk(view);
+                choseCrudOption(view.read());
+                break;
+            }
+        }
+    }
+
+    public void choseReportOption(String input) {
+        switch (input) {
+            case "cost": {
+                ReportQueryService reportQueryService = new ReportQueryService(view);
+                reportQueryService.reportCostOfProject();
+                askMainOption();
+                break;
+            }
+            case "devList": {
+                ReportQueryService reportQueryService = new ReportQueryService(view);
+                reportQueryService.reportDevelopersOfProject();
+                askMainOption();
+                break;
+
+            }
+            case "byLanguage": {
+                ReportQueryService reportQueryService = new ReportQueryService(view);
+                reportQueryService.reportByLanguage();
+                askMainOption();
+                break;
+            }
+            case "byLevel": {
+                ReportQueryService reportQueryService = new ReportQueryService(view);
+                reportQueryService.reportByLevel();
+                askMainOption();
+                break;
+            }
+            case "listProj": {
+                ReportQueryService reportQueryService = new ReportQueryService(view);
+                reportQueryService.reportListProjects();
+                askMainOption();
+                break;
+            }
+            case "exit": {
+                view.write("Goodbye!!!!");
                 break;
             }
             default: {
@@ -117,14 +170,91 @@ public class Controller {
                 break;
             }
             case "exit": {
-                view.write("Goodbye!!!!!!!");
+                view.write("Goodbye!!!!!!!!!!!");
                 break;
             }
             default: {
                 view.write("Wrong object-----");
                 InputValidator.tableChoseAsk(view);
                 optionCreateObjectMenu(validateString(view));
+                break;
+            }
+        }
+    }
 
+    public void optionDeleteObjectMenu(String input) {
+        switch (input) {
+            case "company": {
+                CompanyService companyService = new CompanyService(view);
+                companyService.deleteCompany();
+                askMainOption();
+                break;
+            }
+            case "customer": {
+                CustomerService customerService = new CustomerService(view);
+                customerService.deleteCustomer();
+                askMainOption();
+                break;
+            }
+            case "developer": {
+                DeveloperService developerService = new DeveloperService(view);
+                developerService.deleteDeveloper();
+                askMainOption();
+                break;
+            }
+            case "project": {
+                ProjectService projectService = new ProjectService(view);
+                projectService.deleteProject();
+                askMainOption();
+                break;
+            }
+            case "exit": {
+                view.write("Goodbye!!!!!!!!!!!!!!!!!!!!!!!");
+                break;
+            }
+            default: {
+                view.write("Wrong object-----");
+                InputValidator.tableChoseAsk(view);
+                optionCreateObjectMenu(validateString(view));
+                break;
+            }
+        }
+    }
+
+    public void optionUpdateObjectMenu(String input) {
+        switch (input) {
+            case "company": {
+                CompanyService companyService = new CompanyService(view);
+                companyService.updateCompany();
+                askMainOption();
+                break;
+            }
+            case "customer": {
+                CustomerService customerService = new CustomerService(view);
+                customerService.updateCustomer();
+                askMainOption();
+                break;
+            }
+            case "developer": {
+                DeveloperService developerService = new DeveloperService(view);
+                developerService.inputDeveloper();
+                askMainOption();
+                break;
+            }
+            case "project": {
+                ProjectService projectService = new ProjectService(view);
+                projectService.updateProject();
+                askMainOption();
+                break;
+            }
+            case "exit": {
+                view.write("Goodbye!!!!!!-!");
+                break;
+            }
+            default: {
+                view.write("Wrong object-----");
+                InputValidator.tableChoseAsk(view);
+                optionCreateObjectMenu(validateString(view));
                 break;
             }
         }
@@ -141,7 +271,6 @@ public class Controller {
                     e.printStackTrace();
                 }
                 askMainOption();
-
                 break;
             }
             case "company": {
@@ -153,7 +282,6 @@ public class Controller {
                     e.printStackTrace();
                 }
                 askMainOption();
-
                 break;
 
             }
@@ -166,7 +294,6 @@ public class Controller {
                     e.printStackTrace();
                 }
                 askMainOption();
-
                 break;
             }
             case "developer": {
@@ -178,7 +305,10 @@ public class Controller {
                     e.printStackTrace();
                 }
                 askMainOption();
-
+                break;
+            }
+            case "exit": {
+                view.write("Goodbye!!!!!!-!");
                 break;
             }
             default: {
@@ -186,7 +316,6 @@ public class Controller {
                         "try one more time");
                 tableChoseAsk(view);
                 optionReadObjectMenu(validateString(view));
-
             }
         }
     }

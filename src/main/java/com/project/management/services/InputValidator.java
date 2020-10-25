@@ -1,20 +1,10 @@
 package com.project.management.services;
 
 import com.project.management.console.View;
-import com.project.management.database.DataBaseConnector;
-import com.zaxxer.hikari.HikariDataSource;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
 public class InputValidator {
-
-    private static final HikariDataSource connector = DataBaseConnector.getConnector();
-
 
     public static String validateString(View view) {
         String value = view.read();
@@ -67,25 +57,16 @@ public class InputValidator {
                 "or exit for exit");
     }
 
-    public static void writeOUT(String task) {
-        try (Connection connection = connector.getConnection();
-             PreparedStatement statement = connection.prepareStatement(task)) {
-            ResultSet resultSet = statement.executeQuery();
-            int columns = resultSet.getMetaData().getColumnCount();
-            while (resultSet.next()) {
-                for (int i = 1; i <= columns; i++) {
-                    if ((i+columns-1) % columns == 0) {
-                        System.out.println("--------------------------");
-                    } else System.out.println(resultSet.getString(i));
-                }
-            }
-            statement.execute();
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-
-        }
+    public static void reportChoseAsk(View view) {
+        view.write("Chose  Witch report you want to see \n" +
+                "(cost) for cost project \n" +
+                "(devList) for list of developers in project \n" +
+                "(byLanguage) for list of developers by language \n" +
+                "(byLevel)  for list of developers by level \n" +
+                "(listProj)  for list of projects with count of developers \n" +
+                "or exit for exit");
     }
+
 
 }
 
